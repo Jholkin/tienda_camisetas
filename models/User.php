@@ -47,7 +47,7 @@ class User
      */
     public function setName($name)
     {
-        $this->name = $this->db->real_escape_string($name);
+        $this->name = filter_var($name, FILTER_SANITIZE_STRING);
     }
 
     /**
@@ -63,7 +63,7 @@ class User
      */
     public function setLastname($lastname)
     {
-        $this->lastname = $this->db->real_escape_string($lastname);
+        $this->lastname = filter_var($lastname, FILTER_SANITIZE_STRING);
     }
 
     /**
@@ -79,7 +79,8 @@ class User
      */
     public function setEmail($email)
     {
-        $this->email = $this->db->real_escape_string($email);
+        $email_sanitize = filter_var($email, FILTER_SANITIZE_EMAIL); //sanitizamos la entrada
+        $this->email = filter_var($email_sanitize, FILTER_VALIDATE_EMAIL); //validamos
     }
 
     /**
@@ -95,7 +96,7 @@ class User
      */
     public function setPassword($password)
     {
-        $this->password = password_hash($this->db->real_escape_string($password), PASSWORD_BCRYPT, ['cost' => 4]);
+        $this->password = password_hash($password, PASSWORD_BCRYPT, ['cost' => 4]);
     }
 
     /**
@@ -132,10 +133,11 @@ class User
 
     public function save()
     {
-        $sql = "INSERT INTO usuarios VALUES (null,'[$this->getName()]','[$this->getLastname()]','[$this->getEmail()]',
-                '[$this->getPassword()]','[$this->getRole()]','[$this->getImage()]')";
+        $sql = "INSERT INTO usuarios VALUES (null,'{$this->getName()}','{$this->getLastname()}','{$this->getEmail()}',
+                '{$this->getPassword()}','admin','null');";
 
-        $save = $this->db->query($sql);
+        $statement = $this->db->prepare($sql);
+        $save = $statement->execute();
         $result = false;
         if ($save) {
             $result = true;

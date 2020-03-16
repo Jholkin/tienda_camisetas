@@ -8,9 +8,9 @@ class Database
 
     public static function getConnect()
     {
-        if (!self::$dbh instanceof self) {
+        if (!(self::$dbh instanceof self)) {
             try {
-                self::$dbh = new pdo('mysql:host=localhost;dbname=tienda_master','root','toor');
+                self::$dbh = new PDO('mysql:host=localhost;dbname=tienda_camisetas','root','toor');
                 self::$dbh->query('SET NAMES utf8');
             } catch (PDOException $e) {
                 echo $e->getMessage();
@@ -19,10 +19,4 @@ class Database
 
         return self::$dbh;
     }
-
-    /*public static function connect() {
-        $db = new mysqli('localhost', 'root', '', 'tienda_master');
-        $db->query("SET NAMES 'utf-8'");
-        return $db;
-    }*/
 }
