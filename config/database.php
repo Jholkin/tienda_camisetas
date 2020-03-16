@@ -1,9 +1,22 @@
 <?php
 
-class Database {
-    public static function connect() {
-        $db = new mysqli('localhost', 'root', 'toor', 'tienda_camisetas');
-        $db->query("SET NAMES 'utf-8'");
-        return $db;
+class Database
+{
+    private static $dbh;
+
+    private function __construct() {}
+
+    public static function getConnect()
+    {
+        if (!(self::$dbh instanceof self)) {
+            try {
+                self::$dbh = new PDO('mysql:host=localhost;dbname=tienda_camisetas','root','toor');
+                self::$dbh->query('SET NAMES utf8');
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
+        }
+
+        return self::$dbh;
     }
 }
