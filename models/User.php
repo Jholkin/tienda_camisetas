@@ -1,6 +1,5 @@
 <?php
 
-
 class User
 {
     private $id;
@@ -132,8 +131,8 @@ class User
 
     public function save()
     {
-        $sql = "INSERT INTO usuarios VALUES (null,'[$this->getName()]','[$this->getLastname()]','[$this->getEmail()]',
-                '[$this->getPassword()]','[$this->getRole()]','[$this->getImage()]')";
+        $sql = "INSERT INTO usuarios VALUES (null,'{$this->getName()}','{$this->getLastname()}','{$this->getEmail()}',
+                '{$this->getPassword()}','{$this->getRole()}','{$this->getImage()}')";
 
         $save = $this->db->query($sql);
         $result = false;
