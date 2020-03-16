@@ -132,7 +132,7 @@ class User
     public function save()
     {
         $sql = "INSERT INTO usuarios VALUES (null,'{$this->getName()}','{$this->getLastname()}','{$this->getEmail()}',
-                '{$this->getPassword()}','{$this->getRole()}','{$this->getImage()}')";
+                '{$this->getPassword()}','admin','null');";
 
         $save = $this->db->query($sql);
         $result = false;

@@ -13,6 +13,14 @@ a{
     color: #01B1EA;
 }
 
+.alert-green{
+    color: #33AE3D;
+}
+
+.alert-red{
+    color: red;
+}
+
 /*CONTAINER*/
 #container{
     width: 80%;

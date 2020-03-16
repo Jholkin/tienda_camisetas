@@ -19,7 +19,17 @@ class UserController
             $user->setLastname($_POST['lastname']);
             $user->setEmail($_POST['email']);
             $user->setPassword($_POST['password']);
-            $user->save();
+            $save = $user->save();
+
+            if ($save) {
+                $_SESSION['register'] = 'complete';
+            }else {
+                $_SESSION['register'] = 'failed';
+            }
+        }else {
+            $_SESSION['register'] = 'failed';
         }
+
+        header('Location:' . base_url . 'user/register');
     }
 }

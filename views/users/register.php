@@ -1,17 +1,25 @@
 <h1> Registrarse </h1>
 
-<form action="index.php?controller=User&action=save" method="POST">
-    <label for="nombre">Nombre</label>
-    <input name="nombre" id="nombre" required>
+<?php if (isset($_SESSION['register']) && $_SESSION['register'] == 'complete'): ?>
+        <strong class="alert-green">Registro completado con éxito</strong>
+<?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == 'failed'): ?>
+    <strong class="alert-red">Registro fallido</strong>
+<?php endif; ?>
 
-    <label for="apellidos">Apellidos</label>
-    <input name="apellidos" id="apellidos" required>
+<?php Util::deleteSession('register'); ?>
+
+<form action="<?=base_url?>user/save" method="POST">
+    <label for="name">Nombre</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="lastname">Apellidos</label>
+    <input type="text" name="lastname" id="lastname" required>
 
     <label for="email">Email</label>
-    <input type="text" name="email" id="email" required>
+    <input type="email" name="email" id="email" required>
 
     <label for="password">Contraseña</label>
-    <input type="text" name="password" id="password" required>
+    <input type="password" name="password" id="password" required>
 
     <input type="submit" value="Registrarse">
 </form>
