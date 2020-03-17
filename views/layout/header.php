@@ -20,11 +20,11 @@
     <nav id="menu">
         <ul>
             <li>
-                <a href="#">Inicio</a>
+                <a href="<?=base_url?>">Inicio</a>
             </li>
             <?php while($category = $categories->fetch(PDO::FETCH_OBJ)): ?>
                 <li>
-                    <a href="#"><?=$category->nombre?></a>
+                    <a href="<?=base_url?>category/show&id=<?=$category->id?>"><?=$category->nombre?></a>
                 </li>
             <?php endwhile; ?>
         </ul>

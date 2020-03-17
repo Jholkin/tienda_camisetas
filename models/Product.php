@@ -70,8 +70,7 @@ class Product
 
     public function setPrice($price)
     {
-        $price_sanitize = filter_var($price, FILTER_SANITIZE_NUMBER_FLOAT);
-        $this->price = filter_var($price_sanitize, FILTER_VALIDATE_FLOAT);
+        $this->price = filter_var($price, FILTER_VALIDATE_FLOAT);
     }
 
     public function getStock()
@@ -118,6 +117,14 @@ class Product
     public function getAll()
     {
         $products = $this->db->query("SELECT * FROM productos ORDER BY id DESC;");
+
+        return $products;
+    }
+
+    public function getAllCategory()
+    {
+        $sql = "SELECT p.*, c.nombre FROM productos p INNER JOIN categorias c ON c.id=p.categoria_id WHERE categoria_id={$this->getCategoryId()};";
+        $products = $this->db->query($sql);
 
         return $products;
     }
