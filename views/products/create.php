@@ -1,7 +1,8 @@
 <h1>Crear nuevos productos</h1>
 
 <div class="form-container">
-    <form action="<?=base_url?>product/save" method="post">
+    <!-- el enctype, es para que podamos enviar ficheros-->
+    <form action="<?=base_url?>product/save" method="post" enctype="multipart/form-data">
         <label for="name">Nombre</label>
         <input type="text" name="name" id="name">
 

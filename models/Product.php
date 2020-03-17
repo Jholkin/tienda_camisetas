@@ -4,6 +4,7 @@ require_once 'config/database.php';
 
 class Product
 {
+    private $id;
     private $category_id;
     private $name;
     private $description;
@@ -18,6 +19,17 @@ class Product
     public function __construct()
     {
         $this->db = Database::getConnect();
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $id_sanitize = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
+        $this->id = filter_var($id_sanitize, FILTER_VALIDATE_INT);
     }
 
     public function getCategoryId()
@@ -113,12 +125,26 @@ class Product
     public function save()
     {
         $sql = "INSERT INTO productos VALUES (null,'{$this->getCategoryId()}','{$this->getName()}','{$this->getDescription()}',
-                {$this->getPrice()},{$this->getStock()}, null, CURDATE(), null);";
+                {$this->getPrice()},{$this->getStock()}, null, CURDATE(), '{$this->getImage()}');";
 
         $statement = $this->db->prepare($sql);
         $save = $statement->execute();
         $result = false;
         if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function delete()
+    {
+        $result = false;
+        $sql = "DELETE FROM productos WHERE id = '{$this->getId()}';";
+        
+        $delete = $this->db->query($sql);
+
+        if ($delete) {
             $result = true;
         }
 

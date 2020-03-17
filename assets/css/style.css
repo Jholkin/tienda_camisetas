@@ -223,6 +223,16 @@ button, .button{
     margin-bottom: 20px;
 }
 
+.button-gestion{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button-red{
+    background-color: red;
+    border: 1px solid orange;
+}
+
 label,
 input[type="button"],
 input[type="submit"],
