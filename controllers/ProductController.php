@@ -44,20 +44,27 @@ class ProductController
                 $product->setCategoriId($category);
 
                 // Guardar imagen
-                $file = $_FILES['image'];
-                $filename = $file['name'];
-                $mimetype = $file['type'];
+                if (isset($_FILES['image'])) {
+                    $file = $_FILES['image'];
+                    $filename = $file['name'];
+                    $mimetype = $file['type'];
 
-                if ($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' || $mimetype == 'image/png' || $mimetype == 'image/gif') {
-                    if (!is_dir('uploads/images')) {
-                        mkdir('uploads/images', 0777, true);
+                    if ($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' || $mimetype == 'image/png' || $mimetype == 'image/gif') {
+                        if (!is_dir('uploads/images')) {
+                            mkdir('uploads/images', 0777, true);
+                        }
+
+                        move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
+                        $product->setImage($filename);
                     }
-
-                    move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
-                    $product->setImage($filename);
                 }
 
-                $save = $product->save();
+                if (isset($_GET['id'])) {
+                    $product->setId($_GET['id']);
+                    $save = $product->edit();
+                }else {
+                    $save = $product->save();
+                }
 
                 if ($save) {
                     $_SESSION['product'] = 'complete';
@@ -76,7 +83,18 @@ class ProductController
 
     public function edit()
     {
-        var_dump($_GET);
+        Util::isAdmin();
+
+        if (isset($_GET['id'])) {
+            $edit = true;
+
+            $product = new Product();
+            $product->setId($_GET['id']);
+            $prod = $product->getProduct();
+
+            require_once 'views/products/create.php';
+        }
+        
     }
 
     public function delete()

@@ -32,6 +32,10 @@ td{
     padding: 2px;
 }
 
+.thumb{
+    width: 100px;
+}
+
 /*CONTAINER*/
 #container{
     width: 80%;
@@ -240,6 +244,8 @@ button{
     display: block;
     margin-top: 10px;
 }
+
+
 
 /*CENTRAL*/
 #central{

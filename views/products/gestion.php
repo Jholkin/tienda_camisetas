@@ -13,9 +13,9 @@
 <?php Util::deleteSession('product'); ?>
 
 <?php if(isset($_SESSION['delete']) && $_SESSION['delete'] == 'complete'): ?>
-    <strong class="alert-green">El producto se ha creado correctamente</strong>
+    <strong class="alert-green">El producto se ha eliminado correctamente</strong>
 <?php elseif(isset($_SESSION['delete']) && $_SESSION['delete'] == 'failed'): ?>
-    <strong class="alert-red">El producto no se creó correctamente</strong>
+    <strong class="alert-red">El producto no se eliminó</strong>
 <?php endif; ?>
 
 <?php Util::deleteSession('delete'); ?>

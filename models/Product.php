@@ -122,10 +122,38 @@ class Product
         return $products;
     }
 
+    public function getProduct()
+    {
+        $products = $this->db->query("SELECT * FROM productos WHERE id = '{$this->getId()}';");
+
+        return $products->fetch(PDO::FETCH_OBJ);
+    }
+
     public function save()
     {
         $sql = "INSERT INTO productos VALUES (null,'{$this->getCategoryId()}','{$this->getName()}','{$this->getDescription()}',
                 {$this->getPrice()},{$this->getStock()}, null, CURDATE(), '{$this->getImage()}');";
+
+        $statement = $this->db->prepare($sql);
+        $save = $statement->execute();
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
+    public function edit()
+    {
+        $sql = "UPDATE productos SET categoria_id='{$this->getCategoryId()}', nombre='{$this->getName()}', descripcion='{$this->getDescription()}',
+                precio={$this->getPrice()}, stock={$this->getStock()}";
+        
+        if ($this->getImage() != null) {
+            $sql .= ", imagen='{$this->getImage()}'";
+        }
+        
+        $sql .= " WHERE id={$this->getId()};";
 
         $statement = $this->db->prepare($sql);
         $save = $statement->execute();
