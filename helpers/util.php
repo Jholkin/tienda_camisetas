@@ -27,4 +27,22 @@ class Util
 
         return $categories;
     }
+
+    public static function statisticsCarrito()
+    {
+        $stats = array(
+            'count' => 0,
+            'total' => 0
+        );
+
+        if (isset($_SESSION['carrito'])) {
+            $stats['count'] = count($_SESSION['carrito']);
+
+            foreach ($_SESSION['carrito'] as $key => $product) {
+                $stats['total'] += $product['precio']*$product['unidades'];
+            }
+        }
+
+        return $stats;
+    }
 }
