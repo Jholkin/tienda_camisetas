@@ -22,6 +22,18 @@ class ProductController
         require_once 'views/products/gestion.php';
     }
 
+    public function show()
+    {
+        if (isset($_GET['id'])) {
+
+            $product = new Product();
+            $product->setId($_GET['id']);
+            $prod = $product->getProduct();
+        }
+
+        require_once 'views/products/show.php';
+    }
+
     public function create()
     {
         require_once 'views/products/create.php';
@@ -96,6 +108,8 @@ class ProductController
             $prod = $product->getProduct();
 
             require_once 'views/products/create.php';
+        }else {
+            header('Location: ' . base_url . 'product/gestion');
         }
         
     }
