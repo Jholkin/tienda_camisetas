@@ -144,4 +144,24 @@ class User
 
         return $result;
     }
+
+    public function login($email,$password)
+    {
+        $result = false;
+        
+        // Comprobar si existe el usuario
+        $sql = "SELECT * FROM usuarios WHERE email = '$email'";
+        $statement = $this->db->prepare($sql); //preparamos la sentencia
+        $statement->execute(); // ejecutamos la sentencia
+
+        // recorremos el resultado convertido a objeto
+        while ($user = $statement->fetch(PDO::FETCH_OBJ)) {
+            $pass_verify = password_verify($password, $user->password);
+            if ($pass_verify) {
+                $result = $user;
+            }
+        }
+
+        return $result;
+    }
 }

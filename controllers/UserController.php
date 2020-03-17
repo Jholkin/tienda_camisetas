@@ -12,7 +12,8 @@ class UserController
         require_once 'views/users/register.php';
     }
 
-    public function save() {
+    public function save()
+    {
         if (isset($_POST)) {
             $user = new User();
             $user->setName($_POST['name']);
@@ -31,5 +32,31 @@ class UserController
         }
 
         header('Location:' . base_url . 'user/register');
+    }
+
+    public function login()
+    {
+        if (isset($_POST)) {
+            $user = new User();
+            
+            $identify = $user->login($_POST['email'],$_POST['password']);
+            
+            if ($identify && is_object($identify)) {
+                $_SESSION['identify'] = $identify;
+
+                if ($identify->rol == 'admin') {
+                    $_SESSION['admin'] = true;
+                }
+            }else {
+                $_SESSION['error_login'] = "Identificación fallida";
+            }
+        }
+
+        header('Location: ' . base_url);
+    }
+
+    public function logout()
+    {
+        
     }
 }
