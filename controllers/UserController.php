@@ -57,6 +57,14 @@ class UserController
 
     public function logout()
     {
-        
+        if (isset($_SESSION['identify'])) {
+            unset($_SESSION['identify']);
+        }
+
+        if (isset($_SESSION['admin'])) {
+            unset($_SESSION['admin']);
+        }
+
+        header('Location: ' . base_url);
     }
 }
