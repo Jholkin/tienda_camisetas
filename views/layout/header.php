@@ -16,19 +16,16 @@
     </header>
 
     <!-- MENU -->
+    <?php $categories = Util::showCategories() ?>
     <nav id="menu">
         <ul>
             <li>
                 <a href="#">Inicio</a>
             </li>
-            <li>
-                <a href="#">Categoria-1</a>
-            </li>
-            <li>
-                <a href="#">Categoria-2</a>
-            </li>
-            <li>
-                <a href="#">Categoria-3</a>
-            </li>
+            <?php while($category = $categories->fetch(PDO::FETCH_OBJ)): ?>
+                <li>
+                    <a href="#"><?=$category->nombre?></a>
+                </li>
+            <?php endwhile; ?>
         </ul>
     </nav>

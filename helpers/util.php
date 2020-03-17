@@ -18,4 +18,13 @@ class Util
             return true;
         }
     }
+
+    public static function showCategories()
+    {
+        require_once 'models/Category.php';
+        $category = new Category();
+        $categories = $category->getAll();
+
+        return $categories;
+    }
 }
