@@ -274,6 +274,7 @@ button{
     float: left;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 25px;
     text-align: center;
 }
 
@@ -289,7 +290,7 @@ button{
 }
 
 .product img {
-    width: 100px;
+    height: 170px;
     margin-bottom: 10px;
 }
 

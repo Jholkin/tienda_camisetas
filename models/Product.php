@@ -122,6 +122,14 @@ class Product
         return $products;
     }
 
+    public function getRandom($limit)
+    {
+        $sql = "SELECT * FROM productos ORDER BY RAND() LIMIT $limit;";
+        $products = $this->db->query($sql);
+
+        return $products;
+    }
+
     public function getProduct()
     {
         $products = $this->db->query("SELECT * FROM productos WHERE id = '{$this->getId()}';");
