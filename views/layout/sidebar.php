@@ -19,7 +19,7 @@
             <ul>
                 <?php if(isset($_SESSION['admin'])): ?>
                     <li><a href="<?=base_url?>category/index">Gestionar Categorias</a></li>
-                    <li><a href="#">Gestionar Productos</a></li>
+                    <li><a href="<?=base_url?>product/gestion">Gestionar Productos</a></li>
                     <li><a href="#">Gestionar Pedidos</a></li>
                 <?php endif; ?>
 
