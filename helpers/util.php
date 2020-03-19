@@ -19,6 +19,15 @@ class Util
         }
     }
 
+    public static function isLogged()
+    {
+        if (!isset($_SESSION['identify'])) {
+            header('Location: ' . base_url);
+        }else {
+            return true;
+        }
+    }
+
     public static function showCategories()
     {
         require_once 'models/Category.php';

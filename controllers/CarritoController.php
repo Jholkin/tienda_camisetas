@@ -6,9 +6,13 @@ class CarritoController
 {
     public function index()
     {
-        $carrito = $_SESSION['carrito'];
-        
-        require_once 'views/carrito/index.php';
+        if (!isset($_SESSION['carrito'])) {
+            echo "No ha agregado productos aún al carrito.";
+        }else {
+            $carrito = $_SESSION['carrito'];
+
+            require_once 'views/carrito/index.php';
+        }
     }
 
     public function add()

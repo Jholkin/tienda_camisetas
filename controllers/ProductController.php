@@ -9,7 +9,7 @@ class ProductController
         $product = new Product();
         $products = $product->getRandom(6);
 
-        require_once 'views/products/destacados.php';
+        require_once 'views/product/destacados.php';
     }
 
     public function gestion()
@@ -19,7 +19,7 @@ class ProductController
         $product = new Product();
         $products = $product->getAll();
 
-        require_once 'views/products/gestion.php';
+        require_once 'views/product/gestion.php';
     }
 
     public function show()
@@ -31,12 +31,12 @@ class ProductController
             $prod = $product->getProduct();
         }
 
-        require_once 'views/products/show.php';
+        require_once 'views/product/show.php';
     }
 
     public function create()
     {
-        require_once 'views/products/create.php';
+        require_once 'views/product/create.php';
     }
 
     public function save()
@@ -61,6 +61,7 @@ class ProductController
                 // Guardar imagen
                 if (isset($_FILES['image'])) {
                     $file = $_FILES['image'];
+                    // var_dump($file);die();
                     $filename = $file['name'];
                     $mimetype = $file['type'];
 
@@ -68,9 +69,11 @@ class ProductController
                         if (!is_dir('uploads/images')) {
                             mkdir('uploads/images', 0777, true);
                         }
+                        // var_dump(is_dir('uploads/images'));die();
 
                         move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
                         $product->setImage($filename);
+                        // var_dump(move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename));die();
                     }
                 }
 
@@ -107,11 +110,11 @@ class ProductController
             $product->setId($_GET['id']);
             $prod = $product->getProduct();
 
-            require_once 'views/products/create.php';
+            require_once 'views/product/create.php';
         }else {
             header('Location: ' . base_url . 'product/gestion');
         }
-        
+
     }
 
     public function delete()

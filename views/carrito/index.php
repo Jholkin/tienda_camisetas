@@ -7,16 +7,16 @@
         <th>Precio</th>
         <th>Unidades</th>
     </tr>
-    <?php 
-        foreach($carrito as $key => $element): 
+    <?php
+        foreach($carrito as $key => $element):
             $product = $element['product'];
     ?>
             <tr>
                 <td>
                     <?php if($product->imagen != null): ?>
-                        <img src="<?=base_url?>/uploads/images/<?=$product->imagen?>"  class="img-carrito">
+                        <img src="<?=base_url?>uploads/images/<?=$product->imagen?>"  class="img-carrito">
                     <?php else: ?>
-                        <img src="<?=base_url?>/uploads/images/default.jpg"  class="img-carrito">
+                        <img src="<?=base_url?>uploads/images/default.jpg"  class="img-carrito">
                     <?php endif; ?>
                 </td>
                 <td><a href="<?=base_url?>product/show&id=<?=$product->id?>"><?=$product->nombre?></a></td>
@@ -31,5 +31,5 @@
     <?php $stats = Util::statisticsCarrito(); ?>
     <h3>Precio total: <?=$stats['total']?>$</h3>
 
-    <a href="" class="button button-pedido">Hacer pedido</a>
+    <a href="<?=base_url?>order/make" class="button button-pedido">Hacer pedido</a>
 </div>

@@ -10,7 +10,7 @@ class Database
     {
         if (!(self::$dbh instanceof self)) {
             try {
-                self::$dbh = new PDO('mysql:host=localhost;dbname=tienda_camisetas','root','toor');
+                self::$dbh = new PDO('mysql:host=localhost;dbname=tienda_camisetas','root','');
                 self::$dbh->query('SET NAMES utf8');
             } catch (PDOException $e) {
                 echo $e->getMessage();

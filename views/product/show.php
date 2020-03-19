@@ -4,9 +4,9 @@
     <div id="detail-product">
         <div class="image">
             <?php if($prod->imagen != null): ?>
-                <img src="<?=base_url?>/uploads/images/<?=$prod->imagen?>">
+                <img src="<?=base_url?>uploads/images/<?=$prod->imagen?>">
             <?php else: ?>
-                <img src="<?=base_url?>/uploads/images/default.jpg">
+                <img src="<?=base_url?>uploads/images/default.jpg">
             <?php endif; ?>
         </div>
 

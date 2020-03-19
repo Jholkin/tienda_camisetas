@@ -9,7 +9,7 @@ class UserController
     }
 
     public function register() {
-        require_once 'views/users/register.php';
+        require_once 'views/user/register.php';
     }
 
     public function save()
@@ -38,9 +38,9 @@ class UserController
     {
         if (isset($_POST)) {
             $user = new User();
-            
+
             $identify = $user->login($_POST['email'],$_POST['password']);
-            
+
             if ($identify && is_object($identify)) {
                 $_SESSION['identify'] = $identify;
 

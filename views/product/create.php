@@ -33,10 +33,10 @@
 
         <label for="image">Imagen</label>
         <?php if(isset($prod) && !empty($prod->imagen)): ?>
-            <img src="<?=base_url?>/uploads/images/<?=$prod->imagen?>" class="thumb">
+            <img src="<?=base_url?>uploads/images/<?=$prod->imagen?>" class="thumb">
         <?php endif; ?>
         <input type="file" name="image" id="image">
-        
+
         <input type="submit" value="Guardar">
     </form>
 </div>
