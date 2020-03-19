@@ -190,6 +190,20 @@ class Order
         return $result;
     }
 
+    public function updateOrder()
+    {
+        $sql = "UPDATE pedidos SET estado='{$this->getState()}' WHERE id={$this->getId()};";
+
+        $statement = $this->db->prepare($sql);
+        $save = $statement->execute();
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+
+        return $result;
+    }
+
 }
 
 ?>

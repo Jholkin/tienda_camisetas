@@ -203,7 +203,7 @@ input[type="email"]:focus{
 
 input[type="button"],
 input[type="submit"],
-button, .button{
+.button{
     display: block;
     border-radius: 2px;
     width: auto;
@@ -239,8 +239,7 @@ button, .button{
 
 label,
 input[type="button"],
-input[type="submit"],
-button{
+input[type="submit"]{
     display: block;
     margin-top: 10px;
 }
@@ -358,6 +357,11 @@ button{
 }
 
 /*CARRITO*/
+.delete-carrito{
+    float: left;
+    width: 340px;
+}
+
 .total-carrito{
     float: right;
     width: 340px;
@@ -366,13 +370,35 @@ button{
 .total-carrito h3{
     display: block;
     float: left;
-    padding-top: 13px;
+    padding-top: 5px;
+}
+
+.button-carrito{
+    width: 70px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .button-pedido{
     display: block;
     width: 150px;
     float: right;
-    text-align: center;
-    margin-top: 10px;
+}
+
+.button-delete{
+    width: 150px;
+    float: left;
+}
+
+.updown-unidades{
+    width: 80px;
+    margin: 0 auto;
+}
+
+.updown-unidades .button{
+    display: block;
+    width: 20px;
+    float: left;
+    padding: 2px;
+    margin: 7px;
 }

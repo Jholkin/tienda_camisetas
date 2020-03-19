@@ -91,7 +91,37 @@ class OrderController
         }else {
             header('Location: ' . base_url . 'order/myorders');
         }
+    }
 
+    public function gestion()
+    {
+        Util::isAdmin();
+        $gestion = true;
+
+        $order = new Order();
+        $orders = $order->getAll();
+
+        require_once 'views/order/myorders.php';
+    }
+
+    public function status()
+    {
+        Util::isAdmin();
+
+        if (isset($_POST['order_id']) && isset($_POST['status'])) {
+            $order_id = $_POST['order_id'];
+            $status = $_POST['status'];
+
+            $order = new Order();
+            $order->setId($order_id);
+            $order->setState($status);
+
+            $order->updateOrder();
+
+            header('Location: ' . base_url . 'order/detail&id='.$order_id);
+        }else {
+            header('Location: ' . base_url);
+        }
     }
 }
 

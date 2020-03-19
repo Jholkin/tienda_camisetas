@@ -1,12 +1,29 @@
 <h1>Detalle del pedido</h1>
 
 <?php if(isset($order)): ?>
+
+    <?php if(isset($_SESSION['admin'])): ?>
+        <h3>Cambiar el estado del pedido</h3>
+
+        <form class="" action="<?=base_url?>order/status" method="post">
+            <input type="hidden" name="order_id" value="<?=$order->id?>">
+            <select class="" name="status">
+                <option value="confirm" <?=$order->estado == 'confirm' ? 'selected' : ''?>>Pendiente</option>
+                <option value="preparation" <?=$order->estado == 'preparation' ? 'selected' : ''?>>En preparacion</option>
+                <option value="ready" <?=$order->estado == 'ready' ? 'selected' : ''?>>Preparado</option>
+                <option value="sender" <?=$order->estado == 'sender' ? 'selected' : ''?>>Enviado</option>
+            </select>
+            <input type="submit" name="" value="Cambiar estado">
+        </form><br>
+    <?php endif; ?>
+
     <h3>Dirección de envío</h3>
     Provincia: <?=$order->provincia?> <br>
     Localidad: <?=$order->localidad?> <br>
     Dirección: <?=$order->direccion?> <br><br>
 
     <h3>Datos del pedido</h3>
+    Estado: <?=Util::showStatus($order->estado)?><br>
     Numero de pedido: <?=$order->id?> <br>
     Total a pagar: <?=$order->coste?>$ <br>
     Productos:
